@@ -1,0 +1,32 @@
+<%= form_for(scribble) do |f| %>
+  <% if scribble.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(scribble.errors.count, "error") %> prohibited this scribble from being saved:</h2>
+
+      <ul>
+      <% scribble.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :before_image %>
+    <%= f.text_area :before_image %>
+  </div>
+
+  <div class="field">
+    <%= f.label :after_image %>
+    <%= f.text_area :after_image %>
+  </div>
+
+  <div class="field">
+    <%= f.label :requester_email %>
+    <%= f.text_field :requester_email %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

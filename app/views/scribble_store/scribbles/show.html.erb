@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Before image:</strong>
+  <%= @scribble.before_image %>
+</p>
+
+<p>
+  <strong>After image:</strong>
+  <%= @scribble.after_image %>
+</p>
+
+<p>
+  <strong>Requester email:</strong>
+  <%= @scribble.requester_email %>
+</p>
+
+<%= link_to 'Edit', edit_scribble_path(@scribble) %> |
+<%= link_to 'Back', scribbles_path %>
