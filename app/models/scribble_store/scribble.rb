@@ -1,4 +1,5 @@
 module ScribbleStore
-  class Scribble < ApplicationRecord
+  class Scribble < ActiveRecord::Base
+    mount_uploader :before_image, ScribbleStore::ScribbleUploader
   end
 end
