@@ -10,14 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170415154843) do
+ActiveRecord::Schema.define(version: 20170528163150) do
 
   create_table "scribble_store_scribbles", force: :cascade do |t|
-    t.text     "before_image"
-    t.text     "after_image"
-    t.string   "requester_email"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.text     "image"
+    t.string   "artist_email"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.integer  "source_scribble_id"
+    t.index ["source_scribble_id"], name: "index_scribble_store_scribbles_on_source_scribble_id"
   end
 
 end
