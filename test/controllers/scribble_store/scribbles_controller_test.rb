@@ -20,7 +20,7 @@ module ScribbleStore
 
     test "should create scribble" do
       assert_difference('Scribble.count') do
-        post scribbles_url, params: { scribble: { after_image: @scribble.after_image, before_image: @scribble.before_image, requester_email: @scribble.requester_email } }
+        post scribbles_url, params: { scribble: { image: @scribble.image, artist_email: @scribble.artist_email } }
       end
 
       assert_redirected_to scribble_url(Scribble.last)
@@ -37,7 +37,7 @@ module ScribbleStore
     end
 
     test "should update scribble" do
-      patch scribble_url(@scribble), params: { scribble: { after_image: @scribble.after_image, before_image: @scribble.before_image, requester_email: @scribble.requester_email } }
+      patch scribble_url(@scribble), params: { scribble: { image: @scribble.image, artist_email: @scribble.artist_email } }
       assert_redirected_to scribble_url(@scribble)
     end
 

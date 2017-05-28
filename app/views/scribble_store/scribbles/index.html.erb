@@ -15,9 +15,8 @@
   <tbody>
     <% @scribbles.each do |scribble| %>
       <tr>
-        <td><%= scribble.before_image %></td>
-        <td><%= scribble.after_image %></td>
-        <td><%= scribble.requester_email %></td>
+        <td><%= scribble.image %></td>
+        <td><%= scribble.artist_email %></td>
         <td><%= link_to 'Show', scribble %></td>
         <td><%= link_to 'Edit', edit_scribble_path(scribble) %></td>
         <td><%= link_to 'Destroy', scribble, method: :delete, data: { confirm: 'Are you sure?' } %></td>

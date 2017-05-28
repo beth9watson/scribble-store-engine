@@ -1,18 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Before image:</strong>
-  <%= @scribble.before_image %>
-</p>
-
-<p>
-  <strong>After image:</strong>
-  <%= @scribble.after_image %>
+  <strong>Image:</strong>
+  <%= @scribble.image %>
 </p>
 
 <p>
   <strong>Requester email:</strong>
-  <%= @scribble.requester_email %>
+  <%= @scribble.artist_email %>
 </p>
 
 <%= link_to 'Edit', edit_scribble_path(@scribble) %> |
