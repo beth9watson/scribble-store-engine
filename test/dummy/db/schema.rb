@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170528163150) do
+ActiveRecord::Schema.define(version: 20170528195213) do
 
   create_table "scribble_store_scribbles", force: :cascade do |t|
     t.text     "image"

@@ -56,7 +56,7 @@ module ScribbleStore
 
       # Only allow a trusted parameter "white list" through.
       def scribble_params
-        params.require(:scribble).permit(:image, :artist_email)
+        params.require(:scribble).permit(:image, :artist_email, :source_scribble_id)
       end
   end
 end
