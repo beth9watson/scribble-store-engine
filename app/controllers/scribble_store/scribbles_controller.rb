@@ -2,7 +2,7 @@ require_dependency "scribble_store/application_controller"
 
 module ScribbleStore
   class ScribblesController < ApplicationController
-    before_action :set_scribble, only: [:show, :edit, :update, :destroy]
+    before_action :set_scribble, only: [:show]
 
     # GET /scribbles
     def index
@@ -18,34 +18,15 @@ module ScribbleStore
       @scribble = Scribble.new
     end
 
-    # GET /scribbles/1/edit
-    def edit
-    end
-
     # POST /scribbles
     def create
       @scribble = Scribble.new(scribble_params)
-
+      
       if @scribble.save
         redirect_to @scribble, notice: 'Scribble was successfully created.'
       else
-        render :new
+        render :new, status: 400
       end
-    end
-
-    # PATCH/PUT /scribbles/1
-    def update
-      if @scribble.update(scribble_params)
-        redirect_to @scribble, notice: 'Scribble was successfully updated.'
-      else
-        render :edit
-      end
-    end
-
-    # DELETE /scribbles/1
-    def destroy
-      @scribble.destroy
-      redirect_to scribbles_url, notice: 'Scribble was successfully destroyed.'
     end
 
     private

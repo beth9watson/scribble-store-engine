@@ -4,6 +4,12 @@ require File.expand_path("../dummy/config/environment.rb", __FILE__)
 require 'rspec/rails'
 require 'factory_girl_rails'
 
+# Path to where we store files used for testing
+TMP_FILES_PATH = "#{Rails.root}/files"
+
+# Include the Engine Gem
+include ScribbleStore
+
 Rails.backtrace_cleaner.remove_silencers!
 
 # Load support files
@@ -14,13 +20,15 @@ RSpec.configure do |config|
  config.use_transactional_fixtures = true
  config.infer_base_class_for_anonymous_controllers = false
  config.order = "random"
-end
 
-if Rails.env.test? or Rails.env.cucumber?
-  CarrierWave.configure do |config|
-    config.storage = :file
-    config.enable_processing = false
+   config.after(:each) do
+    if Rails.env.test? || Rails.env.cucumber?
+      FileUtils.rm_rf(Dir["#{Rails.root}/support/uploads"])
+    end 
   end
 end
 
-include ScribbleStore
+def uploaded_image
+  Rack::Test::UploadedFile.new(File.open("#{TMP_FILES_PATH}/ruby.png"))
+end
+

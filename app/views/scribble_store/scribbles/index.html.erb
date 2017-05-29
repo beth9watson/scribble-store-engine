@@ -5,8 +5,7 @@
 <table>
   <thead>
     <tr>
-      <th>Before image</th>
-      <th>Artist email</th>
+      <th>Image</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,7 +14,6 @@
     <% @scribbles.each do |scribble| %>
       <tr>
         <td><%= scribble.image %></td>
-        <td><%= scribble.artist_email %></td>
         <td><%= link_to 'Show', scribble %></td>
         <td><%= link_to 'Edit', edit_scribble_path(scribble) %></td>
         <td><%= link_to 'Destroy', scribble, method: :delete, data: { confirm: 'Are you sure?' } %></td>
