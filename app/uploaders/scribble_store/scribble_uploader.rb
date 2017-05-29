@@ -6,10 +6,8 @@ module ScribbleStore
       %w(jpg jpeg png gif)
     end
 
-    process resize_to_fit: [500, 500]
-
-    version :thumb do
-      process resize_to_fill: [200,200]
+    version :featured do
+      process resize_to_fit: [400, 400]
     end
 
     storage :file
