@@ -5,9 +5,7 @@
 <table>
   <thead>
     <tr>
-      <th>Before image</th>
-      <th>After image</th>
-      <th>Requester email</th>
+      <th>Image</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,9 +13,7 @@
   <tbody>
     <% @scribbles.each do |scribble| %>
       <tr>
-        <td><%= scribble.before_image %></td>
-        <td><%= scribble.after_image %></td>
-        <td><%= scribble.requester_email %></td>
+        <td><%= scribble.image %></td>
         <td><%= link_to 'Show', scribble %></td>
         <td><%= link_to 'Edit', edit_scribble_path(scribble) %></td>
         <td><%= link_to 'Destroy', scribble, method: :delete, data: { confirm: 'Are you sure?' } %></td>

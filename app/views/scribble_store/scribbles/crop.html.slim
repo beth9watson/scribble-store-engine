@@ -1,0 +1,12 @@
+= image_tag @scribble.image.featured.url, id: 'cropbox'
+
+= form_for @scribble do |f|
+  - %w(x y w h).each do |attr|
+    = f.hidden_field "crop_#{attr}"
+  = f.submit "Submit Scribble!"
+
+- content_for :javascript do
+  javascript:
+    $(function () {
+      initScribbleCropper(3/2);
+    });

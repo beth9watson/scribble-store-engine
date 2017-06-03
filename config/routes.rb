@@ -1,5 +1,5 @@
 ScribbleStore::Engine.routes.draw do
   resources :scribbles
 
-  root to: 'scribbles#new'
+  root to: 'scribbles#index'
 end

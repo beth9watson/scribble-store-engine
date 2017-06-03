@@ -2,7 +2,7 @@ require_dependency "scribble_store/application_controller"
 
 module ScribbleStore
   class ScribblesController < ApplicationController
-    before_action :set_scribble, only: [:show, :edit, :update, :destroy]
+    before_action :set_scribble, only: [:show]
 
     # GET /scribbles
     def index
@@ -18,37 +18,40 @@ module ScribbleStore
       @scribble = Scribble.new
     end
 
-    # GET /scribbles/1/edit
-    def edit
-    end
-
     # POST /scribbles
     def create
       @scribble = Scribble.new(scribble_params)
-
+      
       if @scribble.save
-        redirect_to @scribble, notice: 'Scribble was successfully created.'
+        if scribble_params[:image].present?
+          render :crop
+        else
+          redirect_to @scribble, notice: 'Scribble was successfully created.'
+        end
       else
-        render :new
+        render :new, status: 400
       end
     end
 
-    # PATCH/PUT /scribbles/1
     def update
+      @scribble = Scribble.find(params[:id])
+      
       if @scribble.update(scribble_params)
-        redirect_to @scribble, notice: 'Scribble was successfully updated.'
+        if scribble_params[:image].present?
+          render :crop
+        else
+          redirect_to @scribble, notice: 'Scribble was successfully updated.'
+        end
       else
-        render :edit
+        redirect_to @scribble, error: @scribble.errors.full_messages.join(', ')
       end
-    end
-
-    # DELETE /scribbles/1
-    def destroy
-      @scribble.destroy
-      redirect_to scribbles_url, notice: 'Scribble was successfully destroyed.'
     end
 
     private
+
+      def crop_params
+        %i(crop_x crop_y crop_w crop_h)
+      end
       # Use callbacks to share common setup or constraints between actions.
       def set_scribble
         @scribble = Scribble.find(params[:id])
@@ -56,7 +59,7 @@ module ScribbleStore
 
       # Only allow a trusted parameter "white list" through.
       def scribble_params
-        params.require(:scribble).permit(:before_image, :after_image, :requester_email)
+        params.require(:scribble).permit(:image, :artist_email, :source_scribble_id, *crop_params)
       end
   end
 end
