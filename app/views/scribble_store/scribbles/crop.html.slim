@@ -1,43 +1,12 @@
-.container
-  .row
-    .col-sm-5
-      = image_tag @scribble.image.featured.url, id: 'cropbox'
+= image_tag @scribble.image.featured.url, id: 'cropbox'
 
-      = form_for @scribble do |f|
-        - %w(x y w h).each do |attr|
-          = f.hidden_field "crop_#{attr}"
-        = f.submit "Submit Scribble!"
-    .col-sm-3
-      = image_tag @scribble.image.featured.url, id: 'preview', style:"overflow: hidden;"
+= form_for @scribble do |f|
+  - %w(x y w h).each do |attr|
+    = f.hidden_field "crop_#{attr}"
+  = f.submit "Submit Scribble!"
 
 - content_for :javascript do
   javascript:
     $(function () {
-      console.log('here i am');
-      var updateCropper = function(coords) {
-        $('#scribble_crop_x').val(coords.x);
-        $('#scribble_crop_y').val(coords.y);
-        $('#scribble_crop_w').val(coords.w);
-        $('#scribble_crop_h').val(coords.h);
-        updatePreview(coords);
-      };
-
-      var updatePreview = function(coords) {
-        var rx = 100 / coords.w;
-        var ry = 100 / coords.h;
-
-        $('#preview').css({
-          width: Math.round(rx * $('#cropbox').width()) + 'px',
-          height: Math.round(rx * $('#cropbox').height()) + 'px'
-        })
-      };
-
-      var width = parseInt($('#cropbox').width());
-      var height = parseInt($('#cropbox').height());
-      $('#cropbox').Jcrop({
-        aspectRatio: 3/2,
-        setSelect: [0, 0, width, height],
-        onSelect: updateCropper,
-        onChange: updateCropper
-      });
+      initScribbleCropper(3/2);
     });
