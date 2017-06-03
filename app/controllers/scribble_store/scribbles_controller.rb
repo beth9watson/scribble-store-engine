@@ -23,13 +23,35 @@ module ScribbleStore
       @scribble = Scribble.new(scribble_params)
       
       if @scribble.save
-        redirect_to @scribble, notice: 'Scribble was successfully created.'
+        if scribble_params[:image].present?
+          render :crop
+        else
+          redirect_to @scribble, notice: 'Scribble was successfully created.'
+        end
       else
         render :new, status: 400
       end
     end
 
+    def update
+      @scribble = Scribble.find(params[:id])
+      
+      if @scribble.update(scribble_params)
+        if scribble_params[:image].present?
+          render :crop
+        else
+          redirect_to @scribble, notice: 'Scribble was successfully updated.'
+        end
+      else
+        redirect_to @scribble, error: @scribble.errors.full_messages.join(', ')
+      end
+    end
+
     private
+
+      def crop_params
+        %i(crop_x crop_y crop_w crop_h)
+      end
       # Use callbacks to share common setup or constraints between actions.
       def set_scribble
         @scribble = Scribble.find(params[:id])
@@ -37,7 +59,7 @@ module ScribbleStore
 
       # Only allow a trusted parameter "white list" through.
       def scribble_params
-        params.require(:scribble).permit(:image, :artist_email, :source_scribble_id)
+        params.require(:scribble).permit(:image, :artist_email, :source_scribble_id, *crop_params)
       end
   end
 end
