@@ -3,10 +3,11 @@
 
 initScribbleCropper = function(aspectRatio) {
   var updateCropper = function(coords) {
+    console.log(coords);
     $('#scribble_crop_x').val(coords.x);
     $('#scribble_crop_y').val(coords.y);
-    $('#scribble_crop_w').val(coords.w);
-    $('#scribble_crop_h').val(coords.h);
+    $('#scribble_crop_width').val(coords.w);
+    $('#scribble_crop_height').val(coords.h);
   };
 
   var width = parseInt($('#cropbox').width());

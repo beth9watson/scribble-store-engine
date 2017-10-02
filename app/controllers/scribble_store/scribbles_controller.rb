@@ -50,7 +50,7 @@ module ScribbleStore
     private
 
       def crop_params
-        %i(crop_x crop_y crop_w crop_h)
+        %i(crop_x crop_y crop_width crop_height)
       end
       # Use callbacks to share common setup or constraints between actions.
       def set_scribble

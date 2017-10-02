@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170528195213) do
+ActiveRecord::Schema.define(version: 20170603190718) do
+
+  create_table "crop_infos", force: :cascade do |t|
+    t.integer  "x_coor"
+    t.integer  "y_coor"
+    t.integer  "width"
+    t.integer  "height"
+    t.integer  "scribble_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["scribble_id"], name: "index_crop_infos_on_scribble_id"
+  end
 
   create_table "scribble_store_scribbles", force: :cascade do |t|
     t.text     "image"
@@ -18,6 +29,10 @@ ActiveRecord::Schema.define(version: 20170528195213) do
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
     t.integer  "source_scribble_id"
+    t.integer  "crop_height"
+    t.integer  "crop_width"
+    t.integer  "crop_x"
+    t.integer  "crop_y"
     t.index ["source_scribble_id"], name: "index_scribble_store_scribbles_on_source_scribble_id"
   end
 

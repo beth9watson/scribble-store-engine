@@ -1,7 +1,6 @@
 module ScribbleStore
   class Scribble < ActiveRecord::Base
     mount_uploader :image, ScribbleStore::ScribbleUploader
-    attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
     
     after_update :crop_scribble
 
@@ -11,6 +10,7 @@ module ScribbleStore
     validates :image, presence: true
 
     def crop_scribble
+      puts 'CROPPINGGGG #{crop_x.present?}'
       image.recreate_versions! if crop_x.present?
     end
   end
