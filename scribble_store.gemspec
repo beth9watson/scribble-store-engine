@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails", "~> 5.0.2"
 
-  s.add_dependency "carrierwave"
+  s.add_dependency "carrierwave", "~> 0.10.0"
   s.add_dependency "fog"
   s.add_dependency "mini_magick"
 
