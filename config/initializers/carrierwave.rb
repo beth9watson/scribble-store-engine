@@ -1,3 +1,8 @@
+#http://euglena1215.hatenablog.jp/entry/2017/01/07/134802
+require 'carrierwave/storage/abstract'
+require 'carrierwave/storage/file'
+require 'carrierwave/storage/fog'
+
 CarrierWave.configure do |config|
   
   # Use local storage if in development or test
