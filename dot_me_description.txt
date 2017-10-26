@@ -1,0 +1,7 @@
+The Scribble Store is still in very early development. This brain baby is a lesson in managing scope creep.
+At its core it is an image gallery application, allowing users to upload images to the app. What makes it special is the intent. I'd like users to upload images of scribbles on a light background so that I can, in turn, download and print their scribble, draw something more tangible on top of it, and send it back to them. Collaborative art! Through scribbles.
+
+Learning Focus:
+1) Rails Engines! I chose to develop this app as a Rails engine partly to gain experience with that process (I had an inkling that engines could solve a pain point at work), but also because it allowed me to isolate the Scribble Store code and still host it on the same Heroku app as my personal website.
+2) Image hosting with Amazon AWS! This was the first time I ever configured AWS from scratch. Although I've worked on apps which stored assets on AWS, I had never initiated the process myself.
+3) Cropping images using Rails instead of JavaScript! Previously I had always relied on hefty JS plugins to crop images. Managing this process on the back-end just feels good.
